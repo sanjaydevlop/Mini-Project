@@ -176,6 +176,7 @@ view ()
       puts (x[i].repair);
       printf("Status : ");
       puts(x[i].status);
+      printf("Vehile Details are viewed successfully\n");
       printf ("\n\n");
     }
 }
@@ -239,6 +240,7 @@ edit ()
     {
       printf ("\n\nInvalid option\nTry Again!!\n\n");
     }
+    printf("Vehicle Details are updated successfully\n");
 }
 
 void
@@ -262,11 +264,12 @@ search ()
 	  printf ("Vehicle Number = ");
 	  puts (x[s].vehno);
 	  printf ("Reference no = %d\nPhone number =%d\nAge = %d\n",x[s].refid, x[s].phone, x[s].age);
-	  printf ("Money Paid= %f\n",x[i].tot);
+	  printf ("Money Paid= %f\n",x[s].tot);
 	  printf("Service : \n");
-	  puts(x[i].repair);
+	  puts(x[s].repair);
 	  printf("Status : ");
-      puts(x[i].status);
+      puts(x[s].status);
+      printf("Vehile Details are viewed successfully\n");
 	  printf ("\n\n");
 	}
       else
@@ -289,12 +292,13 @@ search ()
 	      puts (x[g].name);
 	      printf ("Vehicle No. = ");
 	      puts (x[g].vehno);
-	      printf ("Reference No. no = %d\nPhone number = 0%d\nAge = %d",
+	      printf ("Reference No. no = %d\nPhone number = %d\nAge = %d\n",
 		      x[g].refid, x[g].phone, x[g].age);
-	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
-		      x[i].tot);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[g].repair,
+		      x[g].tot);
 		  printf("Status : ");
-          puts(x[i].status);    
+          puts(x[g].status); 
+          printf("Vehile Details are viewed successfully\n");
 	      printf ("\n\n");
 	      f = 0;
 
@@ -323,12 +327,13 @@ search ()
 	      puts (x[g].name);
 	      printf ("Vehicle Number = ");
 	      puts (x[g].vehno);
-	      printf ("Reference no = %d\nPhone number = 0%d\nAge = %d",
+	      printf ("Reference no = %d\nPhone number = %d\nAge = %d\n",
 		      x[g].refid, x[g].phone, x[g].age);
-	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
-		      x[i].tot);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[g].repair,
+		      x[g].tot);
 		  printf("Status : ");
-          puts(x[i].status);    
+          puts(x[g].status); 
+          printf("Vehile Details are viewed successfully\n");
 	      printf ("\n\n");
 	      f = 0;
 	    }
@@ -355,12 +360,13 @@ search ()
 	      puts (x[g].name);
 	      printf ("Vehicle Number = ");
 	      puts (x[g].vehno);
-	      printf ("Reference no = %d\nPhone number = 0%d\nAge = %d",
+	      printf ("Reference no = %d\nPhone number = %d\nAge = %d\n",
 		      x[g].refid, x[g].phone, x[g].age);
-	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
-		      x[i].tot);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[g].repair,
+		      x[g].tot);
 		  printf("Status : ");
-          puts(x[i].status);
+          puts(x[g].status);
+          printf("Vehile Details are viewed successfully\n");
 	      printf ("\n\n");
 	      f = 0;
 	    }
@@ -385,12 +391,13 @@ search ()
 	      puts (x[g].name);
 	      printf ("Vehicle Number = ");
 	      puts (x[g].vehno);
-	      printf ("Reference no = %d\nPhone number = 0%d\nAge = %d",
+	      printf ("Reference no = %d\nPhone number = %d\nAge = %d\n",
 		      x[g].refid, x[g].phone, x[g].age);
-	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
-		      x[i].tot);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[g].repair,
+		      x[g].tot);
 		  printf("Status : ");
-         puts(x[i].status);
+         puts(x[g].status);
+         printf("Vehile Details are viewed successfully\n");
 	      printf ("\n\n");
 	      f = 0;
 	    }
@@ -453,7 +460,11 @@ del ()
 
     }
   else
-    printf ("\n\nInvalid Serial number\n");
+  {
+      printf ("\n\nInvalid Serial number\n");
+  }
+    
+    printf("Vehicle Details are deleted successfully\n");
 
 }
 
@@ -593,9 +604,75 @@ gen ()
 void
 oil ()
 {
-  printf ("Engine Oil:RS.110\n");
-  printf ("Brake and Chain Oil:RS.25\n");
-  printf ("Total             =RS.135\n");
+  int ol;
+  char pd[30] = "Paid";
+  char nd[30] = "Not Paid";
+  float egn=300.0;
+  float grl=150.0;
+  char pd1[30] = "Paid";
+  char nd1[30] = "Not Paid";
+  float nob1=0;
+  printf("Changing Oil\n");
+  printf("Did the mechanic add new Engine Oil\n1.Yes\n2.No\n");
+  scanf("%d",&ol);
+  if(ol==1)
+  {
+      printf("New Engine Oil has been added\n");
+  }
+  else if(ol==2)
+  {
+      printf("Engine oil has not been added\n");
+  }
+  int gr;
+  
+  printf("Did mechanic add new gear oil\n1.Yes\n2.No\n");
+  scanf("%d",&gr);
+  if(gr==1)
+  {
+      printf("Gear oil has been added\n");
+  }
+  else if(gr==2)
+  {
+      printf("Gear oil has not been addded\n");
+  }
+  printf("Select among the follwing\n1.Engine Oil changed,Gear oil changed\n2.Engine Oil changed,Gear Oil not changed\n3.Engine Oil not changed,Gear Oil changed\n4.Engine Oil not changed,Gear oil not changed\n");
+  int chck1;
+  scanf("%d",&chck1);
+  if(chck1==1)
+  {
+      printf("The total = %f\n",egn+grl);
+      x[i].tot=egn+grl;
+  }
+  else if(chck1==2)
+  {
+      printf("The total = %f\n",egn);
+      x[i].tot=egn;
+  }
+  else if(chck1==3)
+  {
+      printf("The total = %f\n",grl);
+      x[i].tot=grl;
+  }
+  else if(chck1==4)
+  {
+      printf("The total = %f",nob1);
+      x[i].tot=nob1;
+  }
+  int pay1;
+  printf (" Is payment process completed ?\n1.Yes\n2.No\n");
+  scanf ("%d", &pay1);
+  if (pay1 == 1)
+    {
+      strcpy (x[i].status,pd1);
+    }
+  else if (pay1 == 2)
+    {
+      strcpy (x[i].status,nd1);
+    }
+
+  
+  
+  
 }
 
 void
