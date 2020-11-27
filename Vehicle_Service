@@ -1,0 +1,637 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct ad
+{
+  char name[30];
+  char vehno[30];
+  char repair[30];
+  int refid, phone, age, dd, mm, yyyy;
+  float tot;
+  char status[30];
+} x[100];
+int n, i, j = 0, a = 0, sum = 0, g, flag, num;
+void read ();
+void add ();
+void view ();
+void search ();
+void edit ();
+void del ();
+void show ();
+void gen ();
+void oil ();
+void color ();
+void part ();
+int
+main ()
+{
+  read ();
+  int c, i, q;
+  printf ("VEHICLE SERVICE MANAGEMENT\n");
+  int m, n;
+//making out the pattern
+
+  for (m = 1; m <= 4; m++)
+    {
+      for (n = 1; n <= 5; n++)
+	printf (" ");
+      for (n = 1; n <= m - 1; n++)
+	{
+	  printf (" ");
+	}
+      for (n = 1; n <= 4 - m + 1; n++)
+	{
+	  if (n == 4 - m + 1 || m == 1 || m == 4)
+	    printf ("*");
+	  else
+	    printf (" ");
+	}
+      for (n = 1; n <= 4 - m + 1; n++)
+	{
+	  if (n == 1 || m == 1 || m == 4)
+	    printf ("*");
+	  else
+	    printf (" ");
+	}
+      printf ("\n");
+    }
+  while (c != 6)
+    {
+
+      printf
+	("**Enter your choice**\n\n1. Add Information of the Vehicle\n2. View Information of the Vehicle\n3. Search of the Vehicle\n4. Edit Information of the Vehicle\n5. Delete Information of the Vehicle\n6. Exit\n\nOption=");
+      scanf ("%d", &c);		//choice for option
+      if (c == 1)		//add
+	{
+
+	  add ();
+	}
+      else if (c == 2)		//view
+	{
+
+	  view ();
+	}
+      else if (c == 3)		//search
+	{
+
+	  search ();
+	}
+      else if (c == 4)		//edit
+	{
+
+	  edit ();
+	}
+      else if (c == 5)		//delete
+	{
+
+	  del ();
+	}
+      else if (c == 6)
+	{
+	  write ();
+	  return 0;
+	}
+      else
+	{
+
+	  printf ("\n\nInvalid input , try again by using valid inputs");
+	}
+      printf ("\n\n");
+    }
+}
+
+void
+add ()
+{
+  int z;
+  printf ("\n");
+  printf ("Already data inputed on the database =%d\n\n", num);	//how many inputs
+  printf ("How many entry do you want to add=\n");
+  scanf ("%d", &n);
+  sum = n + num;
+  char g[30] = "General Service";
+  char o[30] = "Change in oil";
+  char p[30] = "Parts Replacement";
+  char c[30] = "Color Coating";
+  for (i = num, j = 0; i < sum; i++)
+    {
+      printf ("\n");
+      printf ("Enter Customer's Name: \n");
+      scanf ("%s", x[i].name);
+      printf ("Enter date: \n");
+      scanf ("%d-%d-%d", &x[i].dd, &x[i].mm, &x[i].yyyy);
+      printf ("Enter Vehicle number = \n");
+      scanf ("%s", x[i].vehno);
+      printf ("Enter the age = \n");
+      scanf ("%d", &x[i].age);
+      printf ("Enter Reference No. = \n");
+      scanf ("%d", &x[i].refid);
+      printf ("Enter phone number = \n");
+      scanf ("%d", &x[i].phone);
+      printf ("What type of service you want to choose\n");
+      printf
+	("1.General Service\n2.Change Oil\n3.Coating a new color to the vehicle\n4.Parts Replacement\n");
+      scanf ("%d", &z);
+      if (z == 1)
+	{
+	  gen ();
+	  strcpy (x[i].repair, g);
+
+	}
+      else if (z == 2)
+	{
+	  oil ();
+	  strcpy (x[i].repair, o);
+	}
+      else if (z == 3)
+	{
+	  color ();
+	  strcpy (x[i].repair, c);
+	}
+      else if (z == 4)
+	{
+	  part ();
+	  strcpy (x[i].repair, p);
+	}
+
+      printf ("\n");
+      j++;
+      a++;
+      num++;
+    }
+}
+
+void
+view ()
+{
+  for (i = 0; i < num; i++)
+    {
+      printf ("\n");
+      printf ("Serial Number=%d\n", i);
+      printf ("Name = %s\n", x[i].name);
+      printf ("Vehicle Number =%s\n", x[i].vehno);
+      printf ("Reference no = %d\nPhone number = %d\nAge=%d\n", x[i].refid,x[i].phone, x[i].age);
+      printf ("Total Payment= %f\n", x[i].tot);
+      printf ("Service :");
+      puts (x[i].repair);
+      printf("Status : ");
+      puts(x[i].status);
+      printf ("\n\n");
+    }
+}
+
+void
+edit ()
+{
+  int q, p;
+  fflush (stdin);
+  printf ("What do you want to edit ?\n");
+  printf ("Enter your option\n");
+  printf ("1.Name\n2.Vehicle No.\n3.Age\n4.Reference id\n5.Phone no.\n");
+  printf ("Option=");
+  scanf ("%d", &q);		//option
+  if (q < 5)
+    {
+      printf ("Enter the serial no of that Customer= (0 - %d)=", num - 1);
+      scanf ("%d", &p);		//serial number
+      if (p < num)
+	{
+	  if (q == 1)
+	    {
+	      fflush (stdin);
+	      printf ("Enter the new name=");
+	      scanf ("%s", x[p].name);
+
+	    }
+	  else if (q == 2)
+	    {
+	      fflush (stdin);
+	      printf ("Enter the new Vehicle Number=");
+	      scanf ("%s", x[p].vehno);
+	    }
+	  else if (q == 3)
+	    {
+	      fflush (stdin);
+	      printf ("Enter the new Age=");
+	      scanf ("%d", &x[p].age);
+	    }
+
+	  else if (q == 4)
+	    {
+	      fflush (stdin);
+	      printf ("Enter the new Reference no=");
+	      scanf ("%d", &x[p].refid);
+	    }
+
+	  else if (q == 5)
+	    {
+	      fflush (stdin);
+	      printf ("Enter the new Phone no =");
+	      scanf ("%d", &x[p].phone);
+	    }
+	}
+      else
+	{
+	  printf ("\n\nInvalid Serial \nTry Again !!\n\n");
+	}
+    }
+  else
+    {
+      printf ("\n\nInvalid option\nTry Again!!\n\n");
+    }
+}
+
+void
+search ()
+{
+  int s, h, f;
+  char u[100];
+  printf ("By what do you want to search ?\n");
+  printf("1.Serial no.\n2.Name\n3.Vehicle No.\n4.Reference ID.\n5.Phone no.\n\nOption = ");
+  scanf ("%d", &h);
+  if (h == 1)
+    {
+      printf ("Enter Serial number of the Customer=");
+      scanf ("%d", &s);
+      if (s < num)
+	{
+	  printf ("\n");
+	  printf ("Serial Number=%d\n", s);
+	  printf ("Name = ");
+	  puts (x[s].name);
+	  printf ("Vehicle Number = ");
+	  puts (x[s].vehno);
+	  printf ("Reference no = %d\nPhone number =%d\nAge = %d\n",x[s].refid, x[s].phone, x[s].age);
+	  printf ("Money Paid= %f\n",x[i].tot);
+	  printf("Service : \n");
+	  puts(x[i].repair);
+	  printf("Status : ");
+      puts(x[i].status);
+	  printf ("\n\n");
+	}
+      else
+	printf ("\n\nNot Found\n\n");
+    }
+  else if (h == 2)		//problem is here.........
+    {
+      int f = 1;
+      fflush (stdin);
+      printf ("Enter your name=");
+      gets (u);
+      fflush (stdin);
+      for (g = 0; g < num; g++)
+	{
+	  if (strcmp (u, x[g].name) == 0)
+	    {
+	      printf ("\n");
+	      printf ("Serial Number=%d\n", g);
+	      printf ("Name = ");
+	      puts (x[g].name);
+	      printf ("Vehicle No. = ");
+	      puts (x[g].vehno);
+	      printf ("Reference No. no = %d\nPhone number = 0%d\nAge = %d",
+		      x[g].refid, x[g].phone, x[g].age);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
+		      x[i].tot);
+		  printf("Status : ");
+          puts(x[i].status);    
+	      printf ("\n\n");
+	      f = 0;
+
+	    }
+	}
+      if (f == 1)
+	printf ("\nNot Found\n");
+
+
+
+    }
+  else if (h == 3)
+    {
+      int f = 1;
+      fflush (stdin);
+      printf ("Enter Vehicle Number = ");
+      gets (u);
+      fflush (stdin);
+      for (g = 0; g < num; g++)
+	{
+	  if (strcmp (u, x[g].vehno) == 0)
+	    {
+	      printf ("\n");
+	      printf ("Serial Number=%d\n", g);
+	      printf ("Name = ");
+	      puts (x[g].name);
+	      printf ("Vehicle Number = ");
+	      puts (x[g].vehno);
+	      printf ("Reference no = %d\nPhone number = 0%d\nAge = %d",
+		      x[g].refid, x[g].phone, x[g].age);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
+		      x[i].tot);
+		  printf("Status : ");
+          puts(x[i].status);    
+	      printf ("\n\n");
+	      f = 0;
+	    }
+
+
+	}
+      if (f == 1)
+	printf ("\nNot Found\n");
+
+
+    }
+  else if (h == 4)
+    {
+      int f = 1;
+      printf ("Enter Reference number = ");
+      scanf ("%d", &f);
+      for (g = 0; g < num; g++)
+	{
+	  if (f == x[g].refid)
+	    {
+	      printf ("\n");
+	      printf ("Serial Number=%d\n", g);
+	      printf ("Name = ");
+	      puts (x[g].name);
+	      printf ("Vehicle Number = ");
+	      puts (x[g].vehno);
+	      printf ("Reference no = %d\nPhone number = 0%d\nAge = %d",
+		      x[g].refid, x[g].phone, x[g].age);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
+		      x[i].tot);
+		  printf("Status : ");
+          puts(x[i].status);
+	      printf ("\n\n");
+	      f = 0;
+	    }
+
+	}
+      if (f == 1)
+	printf ("Not Found\n\n");
+
+    }
+  else if (h == 5)
+    {
+      int f = 1;
+      printf ("Enter Phone number = ");
+      scanf ("%d", &f);
+      for (g = 0; g < num; g++)
+	{
+	  if (f == x[g].phone)
+	    {
+	      printf ("\n");
+	      printf ("Serial Number=%d\n", g);
+	      printf ("Name = ");
+	      puts (x[g].name);
+	      printf ("Vehicle Number = ");
+	      puts (x[g].vehno);
+	      printf ("Reference no = %d\nPhone number = 0%d\nAge = %d",
+		      x[g].refid, x[g].phone, x[g].age);
+	      printf ("Service=  %s\n,Money Paid= %f\n", x[i].repair,
+		      x[i].tot);
+		  printf("Status : ");
+         puts(x[i].status);
+	      printf ("\n\n");
+	      f = 0;
+	    }
+
+	}
+      if (f == 1)
+	printf ("Not Found");
+    }
+
+  else
+    printf ("\n\nInvalid input\n\n");
+}
+
+void
+del ()
+{
+  int f, h;
+  printf ("Enter the serial number of the Customer that you want to delete=");
+  scanf ("%d", &f);
+  if (f < num)
+    {
+      printf ("What do you want ?\n");
+      printf
+	("1.Remove the whole record\n2.Remove Name\n3.Remove Vehicle Number\n4.Remove age\n5.Remove Reference Id\n6.Remove phone number\nOption = ");
+      scanf ("%d", &h);
+      if (h == 1)
+	{
+	  while (f < num)
+	    {
+	      strcpy (x[f].name, x[f + 1].name);
+	      strcpy (x[f].vehno, x[f + 1].vehno);
+	      x[f].age = x[f + 1].age;
+	      x[f].refid = x[f + 1].refid;
+	      x[f].phone = x[f + 1].phone;
+	      f++;
+	    }
+	  num--;
+	}
+      else if (h == 2)
+	{
+	  strcpy (x[f].name, "Cleared");
+
+	}
+      else if (h == 3)
+	{
+	  strcpy (x[f].vehno, "Cleared");
+	}
+      else if (h == 4)
+	{
+	  x[f].age = 0;
+	}
+      else if (h == 5)
+	{
+	  x[f].refid = 0;
+	}
+      else if (h == 6)
+	{
+	  x[f].phone = 0;
+	}
+
+    }
+  else
+    printf ("\n\nInvalid Serial number\n");
+
+}
+
+void
+read ()
+{
+  FILE *fp = fopen ("customer.txt", "r");
+  if (fp == NULL)
+    {
+      //create empty file, so that we can open it
+      //in the next execution of this program
+      fp = fopen ("customer.txt", "w");
+      fclose (fp);
+      printf ("File does not exist, I JUST CREATED IT, exiting...\n\n\n");
+
+    }
+
+  num = fread (x, sizeof (struct ad), 100, fp);
+  fclose (fp);
+}
+
+void
+write ()
+{
+  FILE *fp = fopen ("customer.txt", "w");
+  if (fp == NULL)
+    {
+      printf ("Error");
+      exit (1);
+    }
+  fwrite (x, sizeof (struct ad), num, fp);
+
+  fclose (fp);
+}
+
+void
+gen ()
+{
+  int br;
+  char pd[30] = "Paid";
+  char nd[30] = "Not Paid";
+  float brkk=50.0;
+  float washh=500.0;
+  float chainn=50;
+  float nob=0;
+  printf ("General Service\n");
+  printf ("Did the mechanic check Brakes: \n1.Yes\n2.No\n");
+  scanf ("%d", &br);
+  if (br == 1)
+    {
+      printf ("The Mechanic has checked it -\n");
+    }
+  else if (br == 2)
+    {
+      printf ("The Mechanic has not checked it-\n");
+    }
+  printf ("Did the mechanic wash the vehicle: \n1.Yes\n2.No\n");
+  int vw;
+  scanf ("%d", &vw);
+  if (vw == 1)
+    {
+      printf ("Vehicle wash has been done\n");
+    }
+  else if (vw == 2)
+    {
+      printf ("Vehicle wash has not been done\n");
+    }
+  printf ("Did the mechanic check Chain System \n1.Yes\n2.No\n");
+  int cs;
+  scanf ("%d", &cs);
+  if (cs == 1)
+    {
+      printf ("Chain System has been checked\n");
+    }
+  else if (cs == 2)
+    {
+      printf ("Chain System hasn't been checked\n");
+    }
+  printf
+    ("Select among the following\n1.Brakes checked,Washing checked,Chain Checked\n2.Brakes checked,Washing Checked,Chain unchecked\n3.Brakes Checked,Washing unchecked,Chain unchecked\n4.Brakes unchecked,Washing unchecked,Chain Unchecked\n5.Brakes checked,Washing unchecked,Chain Checked\n6.Brakes unchecked,Washing checked,Chain checked\n7.Brakes unchecked,Washing checked,Chain unchecked\n8.Brakes unchecked,Washing unchecked,chain checked\n");
+  int chck;
+  scanf ("%d", &chck);
+  if (chck == 1)
+    {
+      printf ("The Total  = %f/-\n",brkk+washh+chainn);
+      x[i].tot = brkk+washh+chainn;
+    }
+  else if (chck == 2)
+    {
+      printf ("The Total = %f/-\n",brkk+washh);
+      x[i].tot = brkk+washh;
+    }
+  else if (chck == 3)
+    {
+      printf ("The Total= %f/-\n",brkk);
+      x[i].tot = brkk;
+    }
+  else if (chck == 4)
+    {
+      printf ("The Total = %f/=\n",nob);
+      x[i].tot = nob;
+    }
+  else if (chck == 5)
+    {
+      printf ("The total = %f/-\n",brkk+chainn);
+      x[i].tot = brkk+chainn;
+    }
+  else if (chck == 6)
+    {
+      printf ("The Total = %f/-\n",washh+chainn);
+      x[i].tot = washh;
+    }
+  else if (chck == 7)
+    {
+      printf ("The Total is 0+500+0= %f/-\n",washh);
+      x[i].tot = washh;
+    }
+  else if (chck == 8)
+    {
+      printf ("The Total = %f/-\n",chainn);
+      x[i].tot = chainn;
+    }
+  int pay;
+  printf (" Is payment process completed ?\n1.Yes\n2.No\n");
+  scanf ("%d", &pay);
+  if (pay == 1)
+    {
+      strcpy (x[i].status,pd);
+    }
+  else if (pay == 2)
+    {
+      strcpy (x[i].status,nd);
+    }
+
+}
+
+void
+oil ()
+{
+  printf ("Engine Oil:RS.110\n");
+  printf ("Brake and Chain Oil:RS.25\n");
+  printf ("Total             =RS.135\n");
+}
+
+void
+color ()
+{
+  printf ("Color Coating:RS.1000\n");
+  printf ("Total        =RS.1000\n");
+}
+
+void
+part ()
+{
+  int k;
+  printf ("What type of Parts do you want to change?\n");
+  printf
+    ("Chooose among the following\n1.Seat\n2.Head Lights and Indicators\n3.Mud Guard\n4.Speedometer Cable\n");
+  scanf ("%d", &k);
+  if (k == 1)
+    {
+      printf ("Seat=RS.500\n");
+    }
+  else if (k == 2)
+    {
+      printf (" Head Lights and Indicators=RS.400\n");
+    }
+  else if (k == 3)
+    {
+      printf ("Mud Guard=RS.250\n");
+    }
+  else if (k == 4)
+    {
+      printf ("Speedometer Cable=RS.100\n");
+    }
+  else
+    {
+      printf ("Invalid Input\n");
+    }
+
+}
