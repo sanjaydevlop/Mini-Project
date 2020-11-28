@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+
 struct ad
 {
   char name[30];
@@ -12,6 +13,7 @@ struct ad
 } x[100];
 int n, i, j = 0, a = 0, sum = 0, g, flag, num;
 void read ();
+void write();
 void add ();
 void view ();
 void search ();
@@ -27,7 +29,7 @@ main ()
 {
   read ();
   int c, i, q;
-  printf ("VEHICLE SERVICE MANAGEMENT\n");
+  printf ("VEHICLE SERVICE ADMINISTRATION\n");
   int m, n;
 //making out the pattern
 
