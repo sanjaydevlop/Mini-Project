@@ -3,16 +3,17 @@
 #include<stdlib.h>
 #include <time.h>
 
-struct ad
+struct ad            //Defining Structure
 {
   char name[30];
-  char vehno[30];
+  char vehno[10];
   char repair[30];
   int refid,age, dd, mm, yyyy;
   float tot;
-  char status[10];
+  char status[50];
   char phone[30];
-} x[100];
+} x[100]; 
+
 int n, i, j = 0, a = 0, sum = 0, g, flag, num;
 void read ();
 void write();
@@ -26,8 +27,7 @@ void gen ();
 void oil ();
 void color ();
 
-int
-main ()
+int main()
 {
   read ();
   int c, i, q;
@@ -62,8 +62,8 @@ main ()
   while (c != 6)
     {
 
-      printf
-	("**Enter your choice**\n\n1. Add Information of the Vehicle\n2. View Information of the Vehicle\n3. Search of the Vehicle\n4. Edit Information of the Vehicle\n5. Delete Information of the Vehicle\n6. Exit\n\nOption=");
+      
+	  printf("**Enter your choice**\n\n1. Add Information of the Vehicle\n2. View Information of the Vehicle\n3. Search of the Vehicle\n4. Edit Information of the Vehicle\n5. Delete Information of the Vehicle\n6. Exit\n\nOption=");
       scanf ("%d", &c);		//choice for option
       if (c == 1)		//add
 	{
@@ -104,13 +104,12 @@ main ()
     }
 }
 
-void
-add ()
+void add()
 {
   int z;
   printf ("\n");
   printf ("Already data inputed on the database =%d\n\n", num);	//how many inputs
-  printf ("How many entry do you want to add=\n");
+  printf ("Enter 1 to start....................=\n");
   scanf ("%d", &n);
   sum = n + num;
   int wh1;
@@ -126,7 +125,7 @@ add ()
       scanf ("%d-%d-%d", &x[i].dd, &x[i].mm, &x[i].yyyy);
       while(1)
       {
-          if(x[i].dd>31&&x[i].dd<=0||x[i].mm>12&&x[i].mm<=0)
+          if(x[i].dd>31||x[i].mm>12)
           {
                printf("Invalid Input, Please re enter date :\n");
                scanf ("%d-%d-%d", &x[i].dd, &x[i].mm, &x[i].yyyy);
@@ -148,45 +147,45 @@ add ()
       {
           
          if(strlen(x[i].phone)>10||strlen(x[i].phone)<10)
-        {
+         {
           printf("Invalid Input, Please re enter your phone number: \n");
           scanf("%s", x[i].phone);
           
-		}
-		else
-		{
+		 }
+		 else
+		 {
 		    break;
-		}
+		 }
 		
       }
       
       
-              printf ("What type of service you want to choose\n");
-              printf("1.General Service\n2.Change Oil\n3.Coating a new color to the vehicle\n");
+      printf ("What type of service you want to choose\n");
+      printf("1.General Service\n2.Change Oil\n3.Coating a new color to the vehicle\n");
         	         
-              scanf ("%d", &z);
-              if (z == 1)
-        	  {
-        	  strcpy (x[i].repair, g);
-        	  gen ();
-        	  }
-              else if (z == 2)
-        	{
-        	  strcpy (x[i].repair, o);
-        	  oil ();
-        	  
-        	}
-              else if (z == 3)
-        	{
-        	  strcpy (x[i].repair, c);
-        	  color ();
-        	 
-        	}
-        	else
-        	{
-        	    printf("Invalid Input, Please enter it again\n");
-        	}
+      scanf ("%d", &z);
+      if (z == 1)
+      {
+        strcpy (x[i].repair, g);
+        gen ();
       }
+      else if (z == 2)
+      {
+        strcpy (x[i].repair, o);
+        oil ();
+        	  
+      }
+      else if (z == 3)
+      {
+        strcpy (x[i].repair, c);
+        color ();
+        	 
+      }
+      else
+       {
+        printf("Invalid Input, Please enter it again\n");
+       }
+    }
       printf ("\n");
       j++;
       a++;
@@ -194,8 +193,7 @@ add ()
     
 }
 
-void
-view ()
+void view()
 {
   for (i = 0; i < num; i++)
     {
@@ -207,14 +205,14 @@ view ()
       printf ("Phone Number of Customer = %s\n", x[i].phone);
       printf ("Total Payment= %f\n", x[i].tot);
       printf ("Service = %s\n", x[i].repair);
-	  printf("Status : %s \n",x[i].status);
+	  printf("Status : ");
+      puts(x[i].status);
       printf("Vehicle Details are viewed successfully\n");
       printf ("\n\n");
     }
 }
 
-void
-edit ()
+void edit()
 {
   int q, p;
   fflush (stdin);
@@ -228,58 +226,62 @@ edit ()
       printf ("Enter the serial no of that Customer= (0 - %d)=", num - 1);
       scanf ("%d", &p);		//serial number
       if (p < num)
-	{
-	  if (q == 1)
-	    {
-	      fflush (stdin);
-	      printf ("Enter the new name=");
-	      scanf ("%s", x[p].name);
-        }
-	  else if (q == 2)
-	    {
-	      fflush (stdin);
-	      printf ("Enter the new Vehicle Number=");
-	      scanf ("%s", x[p].vehno);
-	    }
-	  else if (q == 3)
-	    {
-	      fflush (stdin);
-	      printf ("Enter the new Age=");
-	      scanf ("%d", &x[p].age);
-	    }
+	  {
+	    if (q == 1)
+	      {
+	        fflush (stdin);
+	        printf ("Enter the new name=");
+	        scanf ("%s", x[p].name);
+            
+          }
+	    else if (q == 2)
+	      {
+	        fflush (stdin);
+	        printf ("Enter the new Vehicle Number=");
+	        scanf ("%s", x[p].vehno);
+	      }
+	    else if (q == 3)
+	      {
+	        fflush (stdin);
+	        printf ("Enter the new Age=");
+	        scanf ("%d", &x[p].age);
+	      }
 
-	  else if (q == 4)
-	    {
-	      fflush (stdin);
-	      printf ("Enter the new Reference no=");
-	      scanf ("%d", &x[p].refid);
-	    }
+	    else if (q == 4)
+	      {  
+	        fflush (stdin);
+	        printf ("Enter the new Reference no=");
+	        scanf ("%d", &x[p].refid);
+	      }
 
-	  else if (q == 5)
-	    {
-	      fflush (stdin);
-	      printf ("Enter the new Phone no =");
-	      scanf ("%s", x[p].phone);
+	    else if (q == 5)
+	      {
+	        fflush (stdin);
+	        printf ("Enter the new Phone no =");
+	        scanf ("%s", x[p].phone);
 	      
-	    }
+	      }
 	    else if (q == 6)
-	    {
-	      fflush (stdin);
-	      printf ("Enter the new Status  =");
-	      scanf ("%s", x[p].status);
-	    }
-	}
-      else
-	{
-	  printf ("\n\nInvalid Serial \nTry Again !!\n\n");
-	}
-    }
+	      {
+	        fflush (stdin);
+	        printf ("Enter the new Status  =");
+	        scanf ("%s", x[p].status);
+	      }
+	  }
+	
+       else
+	   {
+	      printf ("\n\nInvalid Serial \nTry Again !!\n\n");
+	   }
+	   
+	   
+   }
 
     printf("Vehicle Details are updated successfully\n");
 }
 
-void
-search ()
+
+void search ()
 {
   int s, h, f;
   char u[100];
@@ -310,7 +312,7 @@ search ()
 	  printf ("\n\n");
 	}
       else
-	printf ("\n\nNot Found\n\n");
+	    printf ("\n\nNot Found\n\n");
     }
   else if (h == 2)		//problem is here.........
     {
@@ -320,7 +322,7 @@ search ()
       gets (u);
       fflush (stdin);
       for (g = 0; g < num; g++)
-	{
+	 {
 	  if (strcmp (u, x[g].name) == 0)
 	    {
 	      printf ("\n");
@@ -330,10 +332,8 @@ search ()
 	      printf ("Vehicle No. = ");
 	      puts (x[g].vehno);
 	      printf ("Reference No. no = %d\nAge = %d\n",x[g].refid,  x[g].age);
-		      
 		  printf ("Phone Number of Customer = %s\n", x[g].phone);
 	      printf ("Service=  %s\n,Money Paid= %f\n", x[g].repair,x[g].tot);
-		      
 		  printf("Status : ");
           puts(x[g].status); 
           printf("Vehile Details are viewed successfully\n");
@@ -341,9 +341,9 @@ search ()
 	      f = 0;
 
 	    }
-	}
+	 }
       if (f == 1)
-	printf ("\nNot Found\n");
+	     printf ("\nNot Found\n");
 
 
 
@@ -406,7 +406,7 @@ search ()
 		  printf ("Phone Number of Customer = %s\n", x[g].phone);
 		  printf("Status : ");
           puts(x[g].status);
-          printf("Vehicle Details are viewed successfully\n");
+          printf("Vehile Details are viewed successfully\n");
 	      printf ("\n\n");
 	      f = 0;
 	    }
@@ -419,10 +419,8 @@ search ()
   else if (h == 5)
     {
       int f = 1;
-	  fflush (stdin);
       printf ("Enter Phone number = ");
       gets(u);
-	  fflush (stdin);
       for (g = 0; g < num; g++)
 	{
 	  if (strcmp (u, x[g].phone) == 0)
@@ -434,13 +432,12 @@ search ()
 	      printf ("Vehicle Number = ");
 	      puts (x[g].vehno);
 	      printf ("Reference no = %d\n\nAge = %d\n",x[g].refid, x[g].age);
-		      
 		  printf ("Phone Number of Customer = %s\n", x[g].phone);
 	      printf ("Service=  %s\n,Money Paid= %f\n", x[g].repair, x[g].tot);
 		     
-		 printf("Status : ");
-         puts(x[g].status);
-         printf("Vehicle Details are viewed successfully\n");
+		  printf("Status : ");
+          puts(x[g].status);
+          printf("Vehicle Details are viewed successfully\n");
 	      printf ("\n\n");
 	      f = 0;
 	    }
@@ -514,12 +511,12 @@ del ()
 void
 read ()
 {
-  FILE *fp = fopen ("customer.txt", "r");
+  FILE *fp = fopen ("details.txt", "r");
   if (fp == NULL)
     {
       //create empty file, so that we can open it
       //in the next execution of this program
-      fp = fopen ("customer.txt", "w");
+      fp = fopen ("details.txt", "w");
       fclose (fp);
       printf ("File does not exist, I JUST CREATED IT, exiting...\n\n\n");
 
@@ -532,7 +529,7 @@ read ()
 void
 write ()
 {
-  FILE *fp = fopen ("customer.txt", "w");
+  FILE *fp = fopen ("details.txt", "w");
   if (fp == NULL)
     {
       printf ("Error");
@@ -543,13 +540,17 @@ write ()
   fclose (fp);
 }
 
+
+
+
+
 void
 gen ()
 {
   int br;
-  char cc[10][10];
-  char pd[30] = "Paid";
-  char nd[30] = "Not Paid";
+  int j;
+  char pd[50] = "Paid";
+  char nd[50] = "Not Paid";
   float brkk=50.0;
   float washh=500.0;
   float chainn=50;
@@ -590,8 +591,8 @@ gen ()
     {
       printf ("Chain System hasn't been checked\n");
     }
-  printf
-    ("Select among the following\n1.Brakes checked,Washing checked,Chain Checked\n2.Brakes checked,Washing Checked,Chain unchecked\n3.Brakes Checked,Washing unchecked,Chain unchecked\n4.Brakes unchecked,Washing unchecked,Chain Unchecked\n5.Brakes checked,Washing unchecked,Chain Checked\n6.Brakes unchecked,Washing checked,Chain checked\n7.Brakes unchecked,Washing checked,Chain unchecked\n8.Brakes unchecked,Washing unchecked,chain checked\n");
+  
+    printf("Select among the following\n1.Brakes checked,Washing checked,Chain Checked\n2.Brakes checked,Washing Checked,Chain unchecked\n3.Brakes Checked,Washing unchecked,Chain unchecked\n4.Brakes unchecked,Washing unchecked,Chain Unchecked\n5.Brakes checked,Washing unchecked,Chain Checked\n6.Brakes unchecked,Washing checked,Chain checked\n7.Brakes unchecked,Washing checked,Chain unchecked\n8.Brakes unchecked,Washing unchecked,chain checked\n");
   int chck;
   scanf ("%d", &chck);
   if (chck == 1)
@@ -604,14 +605,14 @@ gen ()
       {
           printf("Enter coupon code: \n");
           scanf("%d",&coupg);
-          for(i=0;i<5;i++)
+          for(j=0;j<5;j++)
           {
-              if(coup_arr[i]==coupg)
+              if(coup_arr[j]==coupg)
               {
                   printf("You have succesfully claimed your discount of Rs.10\n");
                   x[i].tot = brkk+washh+chainn-10;
                   printf ("The Total = %f/-\n",x[i].tot);
-				 
+				  break;
               }
 			  
           }
@@ -637,17 +638,17 @@ gen ()
       {
           printf("Enter coupon code: \n");
           scanf("%d",&coupg1);
-          for(i=0;i<5;i++)
+          for(j=0;j<5;j++)
           {
-              if(coup_arr[i]==coupg1)
+              if(coup_arr[j]==coupg1)
               {
                   printf("You have succesfully claimed your discount of Rs.30\n");
-                  x[i].tot = brkk+washh-30;
-                  printf ("The Total = %f/-\n",x[i].tot);
-				 
+				  break;
               }
 			  
           }
+		  x[i].tot = brkk+washh-30;
+          printf ("The Total = %f/-\n",x[i].tot);
 	  }
 	  else if(c2==2)
 	  {
@@ -668,14 +669,14 @@ gen ()
       {
           printf("Enter coupon code: \n");
           scanf("%d",&coupg2);
-          for(i=0;i<5;i++)
+          for(j=0;j<5;j++)
           {
-              if(coup_arr[i]==coupg2)
+              if(coup_arr[j]==coupg2)
               {
                   printf("You have succesfully claimed your discount of Rs.30\n");
                   x[i].tot = brkk-30;
                   printf ("The Total = %f/-\n",x[i].tot);
-				  
+				  break;
               }
 			  
           }
@@ -704,14 +705,14 @@ gen ()
       {
           printf("Enter coupon code: \n");
           scanf("%d",&coupg4);
-          for(i=0;i<5;i++)
+          for(j=0;j<5;j++)
           {
-              if(coup_arr[i]==coupg4)
+              if(coup_arr[j]==coupg4)
               {
                   printf("You have succesfully claimed your discount of Rs.20\n");
                   x[i].tot = brkk+chainn-20;
                   printf ("The Total = %f/-\n",x[i].tot);
-				  
+				  break;
               }
 			  
           }
@@ -734,14 +735,14 @@ gen ()
       {
           printf("Enter coupon code: \n");
           scanf("%d",&coupg5);
-          for(i=0;i<5;i++)
+          for(j=0;j<5;j++)
           {
-              if(coup_arr[i]==coupg5)
+              if(coup_arr[j]==coupg5)
               {
                   printf("You have succesfully claimed your discount of Rs.20\n");
                   x[i].tot = washh+chainn-20;
                   printf ("The Total = %f/-\n",x[i].tot);
-				  
+				  break;
               }
 			  
           }
@@ -765,14 +766,14 @@ gen ()
       {
           printf("Enter coupon code: \n");
           scanf("%d",&coupg6);
-          for(i=0;i<5;i++)
+          for(j=0;j<5;j++)
           {
-              if(coup_arr[i]==coupg6)
+              if(coup_arr[j]==coupg6)
               {
                   printf("You have succesfully claimed your discount of Rs.20\n");
                   x[i].tot = washh-20;
                   printf ("The Total = %f/-\n",x[i].tot);
-				
+				  break;
               }
 			  
           }
@@ -795,14 +796,14 @@ gen ()
       {
           printf("Enter coupon code: \n");
           scanf("%d",&coupg7);
-          for(i=0;i<5;i++)
+          for(j=0;j<5;j++)
           {
-              if(coup_arr[i]==coupg7)
+              if(coup_arr[j]==coupg7)
               {
                   printf("You have succesfully claimed your discount of Rs.20\n");
                   x[i].tot = washh-20;
                   printf ("The Total = %f/-\n",x[i].tot);
-				  
+				  break;
               }
 			  
           }
@@ -821,13 +822,11 @@ gen ()
   scanf ("%d", &pay);
   if (pay == 1)
     {
-      strcpy (x[i].status,pd);
-	  printf("Payment Process completed\n");
+      strcpy(x[i].status,pd);
     }
   else if (pay == 2)
     {
-      strcpy (x[i].status,nd);
-	  printf("Payment Process not completed\n");
+      strcpy(x[i].status,nd);
     }
 
 }
@@ -836,8 +835,6 @@ void
 oil ()
 {
   int ol;
-  char pd[30] = "Paid";
-  char nd[30] = "Not Paid";
   float egn=300.0;
   float grl=150.0;
   char pd1[30] = "Paid";
@@ -895,12 +892,10 @@ oil ()
   if (pay1 == 1)
     {
       strcpy (x[i].status,pd1);
-	  printf("Payment Process completed\n");
     }
   else if (pay1 == 2)
     {
       strcpy (x[i].status,nd1);
-	  printf("Payment Process not completed\n");
     }
 
 }
@@ -945,9 +940,7 @@ color ()
   if(pay2==1)
   {
 	  strcpy (x[i].status,pd2);
-	  printf("Payment Process completed\n");
-	  printf("\n\n\n\n");
-	  printf("Congratulations,you have successfully won a coupon\nyou can avail it only if you opt for genral service.\n");
+	  printf("Congratulations,you have successfully won a coupon\nyou can avail it only if you opt for general service.\n");
 	   int lower = 55452, upper = 55456;
 
        srand(time(0));
@@ -959,7 +952,8 @@ color ()
   else if(pay2==2)
   {
 	  strcpy (x[i].status,nd2);
-	  printf("Payment Process not completed\n");
   }
 }
+
+
 
