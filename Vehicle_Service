@@ -31,39 +31,19 @@ int main()
 {
   read ();
   int c, i, q;
-  printf ("VEHICLE SERVICE ADMINISTRATION\n");
+  printf("*********************************************************************************************\n");
+  printf("\n");
+  printf ("******************************VEHICLE SERVICE ADMINISTRATION*******************************\n");
+  printf("\n");
+  printf("*********************************************************************************************\n");
   int m, n;
 //making out the pattern
 
-  for (m = 1; m <= 4; m++)
-    {
-      for (n = 1; n <= 5; n++)
-	printf (" ");
-      for (n = 1; n <= m - 1; n++)
-	{
-	  printf (" ");
-	}
-      for (n = 1; n <= 4 - m + 1; n++)
-	{
-	  if (n == 4 - m + 1 || m == 1 || m == 4)
-	    printf ("*");
-	  else
-	    printf (" ");
-	}
-      for (n = 1; n <= 4 - m + 1; n++)
-	{
-	  if (n == 1 || m == 1 || m == 4)
-	    printf ("*");
-	  else
-	    printf (" ");
-	}
-      printf ("\n");
-    }
   while (c != 6)
     {
 
       
-	  printf("**Enter your choice**\n\n1. Add Information of the Vehicle\n2. View Information of the Vehicle\n3. Search of the Vehicle\n4. Edit Information of the Vehicle\n5. Delete Information of the Vehicle\n6. Exit\n\nOption=");
+	  printf("\t\t\t\t**Enter your choice**\n\n1. Add Information of the Vehicle\n\n\n\t\t\t2. View Information of the Vehicle\n\n\n3. Search of the Vehicle\n\n\n\t\t\t4. Edit Information of the Vehicle\n\n\n5. Delete Information of the Vehicle\n\n\n\t\t\t6. Exit\n\n\n\nOption=");
       scanf ("%d", &c);		//choice for option
       if (c == 1)		//add
 	{
@@ -109,8 +89,21 @@ void add()
   int z;
   printf ("\n");
   printf ("Already data inputed on the database =%d\n\n", num);	//how many inputs
-  printf ("Enter 1 to start....................=\n");
+  printf ("Enter 1 to start....................\n");
   scanf ("%d", &n);
+  while(1)
+  {
+	  if(n!=1)
+	  {
+		  printf("Invalid input, enter 1 again...\n");
+		  scanf("%d",&n);
+	  }
+	  else
+	  {
+		  break;
+	  }
+  }
+  
   sum = n + num;
   int wh1;
   char g[30] = "General Service";
@@ -121,8 +114,12 @@ void add()
       printf ("\n");
       printf ("Enter Customer's Name: \n");
       scanf ("%s", x[i].name);
+	  printf ("\n");
+	  printf ("\n");
       printf ("Enter date of registering: \n");
       scanf ("%d-%d-%d", &x[i].dd, &x[i].mm, &x[i].yyyy);
+	  printf ("\n");
+	  printf ("\n");
       while(1)
       {
           if(x[i].dd>31||x[i].mm>12)
